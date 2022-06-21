@@ -1,0 +1,15 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "noEmit": true,
+    "lib": ["ESNext"],
+    "types": ["@cloudflare/workers-types"]
+  },
+  "include": ["src", "scripts", "test"],
+  "exclude": ["**/node_modules/**"],
+  "references": [
+    { "path": "../../../packages/interface" },
+    { "path": "../../../packages/transport" }
+  ]
+}
