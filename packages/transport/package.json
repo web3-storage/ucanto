@@ -59,7 +59,7 @@
       ]
     }
   },
-  "types": "./dis/src/lib.d.ts",
+  "types": "./dist/src/lib.d.ts",
   "main": "./src/lib.js",
   "exports": {
     ".": {
