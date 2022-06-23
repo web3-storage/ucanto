@@ -127,6 +127,7 @@ export interface Delegation<
 
   facts: Fact[]
   proofs: Proof[]
+  iterate(): IterableIterator<Delegation>
 }
 
 export interface Invocation<C extends Capability = Capability>

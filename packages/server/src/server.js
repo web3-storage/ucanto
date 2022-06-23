@@ -103,15 +103,19 @@ export const execute = async (invocations, server) => {
 export const invoke = async (invocation, server) => {
   // If invocation is not for our server respond with error
   if (invocation.audience.did() !== server.id.did()) {
-    return /** @type {any} */ (new InvalidAudience(server.id, invocation))
+    return /** @type {API.Result<any, API.InvalidAudience>} */ (
+      new InvalidAudience(server.id, invocation)
+    )
+  }
+
+  // Invocation needs to have one single capability
+  if (invocation.capabilities.length !== 1) {
+    return /** @type {API.Result<any, InvocationCapabilityError>} */ (
+      new InvocationCapabilityError(invocation.capabilities)
+    )
   }
 
   const [capability] = invocation.capabilities
-  if (!capability) {
-    return /** @type {API.Result<any, CapabilityMissingError>} */ (
-      new CapabilityMissingError()
-    )
-  }
 
   const path = capability.can.split('/')
   const method = /** @type {string} */ (path.pop())
@@ -210,24 +214,28 @@ class HandlerExecutionError extends Error {
   }
 }
 
-class CapabilityMissingError extends Error {
-  constructor() {
+class InvocationCapabilityError extends Error {
+  /**
+   * @param {any} caps
+   */
+  constructor(caps) {
     super()
     /** @type {true} */
     this.error = true
+    this.caps = caps
   }
   get name() {
-    return 'CapabilityMissingError'
+    return 'InvocationCapabilityError'
   }
   get message() {
-    return `Invocation is missing a capability.`
+    return `Invocation is required to have one single capability.`
   }
   toJSON() {
     return {
       name: this.name,
       error: this.error,
       message: this.message,
-      stack: this.stack,
+      capabilities: this.caps,
     }
   }
 }

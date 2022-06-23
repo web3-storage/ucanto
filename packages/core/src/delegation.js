@@ -121,6 +121,28 @@ export class Delegation {
   get facts() {
     return this.data.facts
   }
+
+  /**
+   * Iterate over the proofs
+   *
+   * @returns {IterableIterator<API.Delegation>}
+   */
+  *iterate() {
+    return it(this)
+  }
+}
+
+/**
+ * @param {API.Delegation} delegation
+ * @returns {IterableIterator<API.Delegation>}
+ */
+const it = function* (delegation) {
+  for (const proof of delegation.proofs) {
+    if (isDelegation(proof)) {
+      yield* it(proof)
+      yield proof
+    }
+  }
 }
 
 const decodeCache = new WeakMap()
