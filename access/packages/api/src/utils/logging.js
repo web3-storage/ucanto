@@ -173,7 +173,7 @@ export class Logging {
    * @param {any} [context]
    * @param {any} [metadata]
    */
-  log(message, level, context, metadata) {
+  log(message, level, context = '', metadata) {
     const dt = this._date()
     let log = {
       dt,
@@ -245,8 +245,8 @@ export class Logging {
    */
   time(name, description) {
     this._times.set(name, {
-      name: name,
-      description: description,
+      name,
+      description,
       start: Date.now(),
     })
     this._timesOrder.push(name)

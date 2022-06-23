@@ -2,7 +2,7 @@
 import * as Types from '@ucanto/interface'
 import { HTTPError } from './utils/errors.js'
 import * as UCAN from '@ipld/dag-ucan'
-import { Delegation } from '@ucanto/core'
+import { Delegation, isDelegation, isLink } from '@ucanto/core'
 import { UTF8 } from '@ucanto/transport'
 
 const HEADERS = Object.freeze({
@@ -50,4 +50,20 @@ export class BaseRequestTransport {
       body: UTF8.encode(JSON.stringify(result)),
     }
   }
+}
+
+/** @type {import('./ucanto/types.js').ClientCodec} */
+export const client = {
+  async encode(invocations, options) {
+    const headers = {}
+    const chain = await Delegation.delegate(invocations[0])
+
+    // TODO iterate over proofs and send them too
+    // for (const ucan of chain.iterate()) {
+    //   //
+    // }
+    headers.authorization = `bearer ${UCAN.format(chain.data)}`
+  },
+
+  decode(response) {},
 }

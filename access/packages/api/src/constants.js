@@ -1,3 +1,4 @@
-/* eslint-disable no-undef */
-
-export const PRIVATE_KEY = _PRIVATE_KEY
+// @ts-ignore
+export const PRIVATE_KEY = globalThis.PRIVATE_KEY
+// @ts-ignore
+export const DEBUG = globalThis.DEBUG

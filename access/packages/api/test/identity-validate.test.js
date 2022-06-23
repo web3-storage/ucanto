@@ -1,49 +1,76 @@
+import {
+  serviceAuthority,
+  mf,
+  test,
+  send,
+  connection,
+} from './helpers/setup.js'
 import * as UCAN from '@ipld/dag-ucan'
-import { bindings, mf, test } from './helpers/setup.js'
 import * as Client from '@ucanto/client'
-import * as CAR from '@ucanto/transport/car'
-import * as CBOR from '@ucanto/transport/cbor'
-import * as HTTP from '@ucanto/transport/http'
 import { SigningAuthority, Authority } from '@ucanto/authority'
 
 /**
  * @typedef {import('../src/index.js').Service } Service
  */
 
-// const serviceKp = /** @type {UCAN.Issuer & ucans.EdKeypair} */ (
-//   ucans.EdKeypair.fromSecretKey(bindings._PRIVATE_KEY)
-// )
-
 test.before((t) => {
   t.context = { mf }
 })
 
-test('should route correctly to identity/validate', async (t) => {
-  const { mf } = t.context
-
-  /** @type {Client.Connection<Service>} */
-  const connection = Client.connect({
-    encoder: CAR,
-    decoder: CBOR,
-    channel: HTTP.open({
-      url: new URL('http://localhost:8787'),
-      fetch: mf.dispatchFetch,
-      method: 'POST',
-    }),
-  })
-
+test('should route to validate without ucanto client', async (t) => {
   const kp = await SigningAuthority.generate()
 
+  const ucan = await UCAN.issue({
+    issuer: kp,
+    audience: serviceAuthority,
+    capabilities: [
+      { can: 'identity/validate', with: 'mailto:admin@dag.house' },
+    ],
+  })
+  const res = await send(ucan)
+  const rsp = await res.json()
+  t.deepEqual(rsp, [true])
+})
+
+test('should fail with bad scheme', async (t) => {
+  const kp = await SigningAuthority.generate()
+  const ucan = await UCAN.issue({
+    issuer: kp,
+    audience: serviceAuthority,
+    capabilities: [{ can: 'identity/validate', with: 'mailt:admin@dag.house' }],
+  })
+  const res = await send(ucan)
+  const rsp = await res.json()
+  t.deepEqual(rsp, [
+    {
+      error: true,
+      name: 'Unauthorized',
+      message: 'Capability validation failed.',
+      cause: {
+        error: true,
+        name: 'MalformedCapability',
+        message:
+          `Encountered malformed 'identity/validate' capability: {"can":"identity/validate","with":"mailt:admin@dag.house"}\n` +
+          '  - Expected mailto: URI instead got mailt:admin@dag.house',
+      },
+    },
+  ])
+})
+
+test('should route correctly to identity/validate', async (t) => {
+  const con = connection()
+  const kp = await SigningAuthority.generate()
   const validate = Client.invoke({
     issuer: kp,
-    audience: kp,
+    audience: serviceAuthority,
     capability: {
       can: 'identity/validate',
       with: kp.did(),
     },
   })
 
-  validate.execute(connection)
+  const out = await validate.execute(con)
+  console.log(out)
 })
 
 // test('should route correctly to identity/validate', async (t) => {
