@@ -17,7 +17,7 @@ export const test = /** @type {TestFn} */ (anyTest)
 export const bindings = {
   PRIVATE_KEY:
     'MgCbk99i7qW552YrG6ioSXEzqGbYTBDpTkLjOoTN0ZK0+N+0Bww4KEBX+SQR2c91VAj/KeXR1pQU36k1yoIBqTsmT+D8=',
-  POSTMARK_TOKEN: '9c4c4c98-b1dd-4133-ad5f-731f4231e2a4',
+  POSTMARK_TOKEN: 'secret',
 }
 
 export const mf = new Miniflare({
