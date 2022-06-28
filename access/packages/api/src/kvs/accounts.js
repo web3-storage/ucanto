@@ -1,7 +1,4 @@
 import { CID } from 'multiformats/cid'
-import * as raw from 'multiformats/codecs/raw'
-import { sha256 } from 'multiformats/hashes/sha2'
-
 /**
  * @typedef {{account: string, proof: string}} AccountValue
  */
@@ -22,17 +19,18 @@ export class Accounts {
    *
    * @param {string} issuerDID
    * @param {string} resourceDID
-   * @param {string} proof
+   * @param {import('@ucanto/interface').LinkedProof} proof
    */
   async register(issuerDID, resourceDID, proof) {
-    const bytes = raw.encode(new TextEncoder().encode(proof))
-    const account = CID.create(
-      1,
-      raw.code,
-      await sha256.digest(bytes)
-    ).toString()
-    await this.kv.put(issuerDID, JSON.stringify({ account, proof }))
-    await this.kv.put(resourceDID, JSON.stringify({ account, proof }))
+    const account = `did:ipld:${proof}`
+    await this.kv.put(
+      issuerDID,
+      JSON.stringify({ account, proof: proof.toString() })
+    )
+    await this.kv.put(
+      resourceDID,
+      JSON.stringify({ account, proof: proof.toString() })
+    )
   }
 
   /**

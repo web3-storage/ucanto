@@ -5,6 +5,7 @@ export {}
 
 declare global {
   const PRIVATE_KEY: string
+  const POSTMARK_TOKEN: string
   const ENV: string
   const DEBUG: string
   const BRANCH: string

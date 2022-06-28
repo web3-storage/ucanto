@@ -1,5 +1,5 @@
 {
-  "name": "api",
+  "name": "w3account",
   "version": "0.0.1",
   "description": "Auth API",
   "private": true,
@@ -22,6 +22,7 @@
     "@ucanto/interface": "workspace:^",
     "@ucanto/server": "workspace:^",
     "@ucanto/transport": "workspace:^",
+    "@ucanto/validator": "workspace:^",
     "multiformats": "^9.6.5",
     "nanoid": "^4.0.0",
     "regexparam": "^2.0.0",

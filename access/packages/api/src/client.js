@@ -55,6 +55,7 @@ export class BaseRequestTransport {
 /** @type {import('./ucanto/types.js').ClientCodec} */
 export const client = {
   async encode(invocations, options) {
+    /** @type {Record<string, string>} */
     const headers = {}
     const chain = await Delegation.delegate(invocations[0])
 
@@ -63,7 +64,11 @@ export const client = {
     //   //
     // }
     headers.authorization = `bearer ${UCAN.format(chain.data)}`
+
+    return { headers, body: new Uint8Array() }
   },
 
-  decode(response) {},
+  decode({ headers, body }) {
+    return JSON.parse(UTF8.decode(body))
+  },
 }

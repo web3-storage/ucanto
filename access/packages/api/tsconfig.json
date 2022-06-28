@@ -6,12 +6,13 @@
     "lib": ["ESNext"],
     "types": ["@cloudflare/workers-types"]
   },
-  "include": ["src", "scripts", "test"],
+  "include": ["src", "scripts", "test", "package.json"],
   "exclude": ["**/node_modules/**"],
   "references": [
     { "path": "../../../packages/interface" },
     { "path": "../../../packages/transport" },
     { "path": "../../../packages/server" },
-    { "path": "../../../packages/core" }
+    { "path": "../../../packages/core" },
+    { "path": "../../../packages/validator" }
   ]
 }

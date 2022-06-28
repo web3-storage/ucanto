@@ -6,6 +6,9 @@ import { version } from './routes/version.js'
 import { notFound } from './utils/responses.js'
 import * as Server from '@ucanto/server'
 import { BaseRequestTransport } from './client.js'
+import { service } from './ucanto/service.js'
+import * as CAR from '@ucanto/transport/car'
+import * as CBOR from '@ucanto/transport/cbor'
 
 const r = new Router(getContext, {
   onError(req, err, ctx) {
@@ -23,12 +26,12 @@ r.add(
   'post',
   '/',
   async (event, ctx) => {
-    const t = new BaseRequestTransport()
+    // const t = new BaseRequestTransport()
     const server = Server.create({
       id: ctx.keypair,
-      encoder: t,
-      decoder: t,
-      service: new Service(),
+      encoder: CBOR,
+      decoder: CAR,
+      service: service(ctx),
       catch: (err) => {
         ctx.log.error(err)
       },
@@ -43,6 +46,7 @@ r.add(
 
         return false
       },
+      ...ctx,
     })
 
     const rsp = await server.request({
@@ -56,42 +60,3 @@ r.add(
 
 r.add('all', '*', notFound)
 addEventListener('fetch', r.listen.bind(r))
-
-export class Service {
-  constructor() {
-    this.identity = {
-      validate: Server.provide(
-        Server.capability({
-          can: 'identity/validate',
-          with: Server.URI.match({ protocol: 'mailto:' }),
-          derives: () => true,
-        }),
-        async ({ capability, context, invocation }) => {
-          return true
-        }
-      ),
-    }
-    this.testing = {
-      pass() {
-        return 'test pass'
-      },
-      fail() {
-        throw new Error('test fail')
-      },
-    }
-  }
-}
-
-class IdentityService {
-  /**
-   * @typedef {{
-   * can: "identity/validate"
-   * with: `mailto:${string}`
-   * }} Validate
-   * @param {import('@ucanto/server').Invocation<Validate>} ucan
-   * @returns {Promise<import('@ucanto/server').Result<boolean, { error: true } & Error>>}
-   */
-  async validate(ucan) {
-    return true
-  }
-}

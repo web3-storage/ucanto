@@ -71,7 +71,7 @@ prog
         const cli = new Sentry(undefined, {
           authToken: process.env.SENTRY_TOKEN,
           org: 'protocol-labs-it',
-          project: 'api',
+          project: 'w3account-api',
           dist: git.short(__dirname),
         })
 
