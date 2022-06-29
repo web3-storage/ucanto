@@ -163,8 +163,8 @@ importers:
       '@types/chai': 4.3.1
       '@types/chai-subset': 1.3.3
       '@types/mocha': 9.1.1
-      '@ucanto/authority': 0.4.2
-      '@ucanto/core': 0.5.1
+      '@ucanto/authority': link:../authority
+      '@ucanto/core': link:../core
       '@ucanto/transport': link:../transport
       '@web-std/fetch': 4.1.0
       '@web-std/file': 3.0.2
@@ -204,7 +204,7 @@ importers:
       '@types/chai': 4.3.1
       '@types/chai-subset': 1.3.3
       '@types/mocha': 9.1.1
-      '@ucanto/authority': 0.4.2
+      '@ucanto/authority': link:../authority
       c8: 7.11.3
       chai: 4.3.6
       chai-subset: 1.6.0
@@ -246,14 +246,14 @@ importers:
       playwright-test: ^7.3.0
       typescript: ^4.7.2
     dependencies:
-      '@ucanto/core': 0.5.1
+      '@ucanto/core': link:../core
       '@ucanto/interface': link:../interface
-      '@ucanto/validator': 0.5.1
+      '@ucanto/validator': link:../validator
     devDependencies:
       '@types/chai': 4.3.1
       '@types/chai-subset': 1.3.3
       '@types/mocha': 9.1.1
-      '@ucanto/authority': 0.4.2
+      '@ucanto/authority': link:../authority
       '@ucanto/client': link:../client
       '@ucanto/transport': link:../transport
       '@web-std/fetch': 4.1.0
@@ -289,14 +289,14 @@ importers:
     dependencies:
       '@ipld/car': 4.1.3
       '@ipld/dag-cbor': 7.0.2
-      '@ucanto/core': 0.5.1
+      '@ucanto/core': link:../core
       '@ucanto/interface': link:../interface
       multiformats: 9.7.0
     devDependencies:
       '@types/chai': 4.3.1
       '@types/chai-subset': 1.3.3
       '@types/mocha': 9.1.1
-      '@ucanto/authority': 0.4.2
+      '@ucanto/authority': link:../authority
       '@web-std/fetch': 4.1.0
       c8: 7.11.3
       chai: 4.3.6
@@ -328,14 +328,14 @@ importers:
     dependencies:
       '@ipld/car': 4.1.3
       '@ipld/dag-cbor': 7.0.2
-      '@ucanto/core': 0.5.1
+      '@ucanto/core': link:../core
       '@ucanto/interface': link:../interface
       multiformats: 9.7.0
     devDependencies:
       '@types/chai': 4.3.1
       '@types/chai-subset': 1.3.3
       '@types/mocha': 9.1.1
-      '@ucanto/authority': 0.4.2
+      '@ucanto/authority': link:../authority
       '@ucanto/client': link:../client
       c8: 7.11.3
       chai: 4.3.6
@@ -646,18 +646,21 @@ packages:
       cborg: 1.9.4
       multiformats: 9.7.0
       varint: 6.0.0
+    dev: false
 
   /@ipld/dag-cbor/7.0.2:
     resolution: {integrity: sha512-V9EhJVWXqzjjRs0kiZfUXOaq8y6R2C4AAmfGoMeszqGOBgfACr5tFAgAwZY0e8z/OpmJWpCrZhzPRTZV0c/gjA==}
     dependencies:
       cborg: 1.9.4
       multiformats: 9.7.0
+    dev: false
 
   /@ipld/dag-json/8.0.10:
     resolution: {integrity: sha512-fny24vxVtgAv7aKmAikZq86kikp56knZL/77eyXUsrgGRGtkx9D1awemKbhIVw/7S5nBbP43m/AZwxNPVpP5eg==}
     dependencies:
       cborg: 1.9.4
       multiformats: 9.7.0
+    dev: false
 
   /@ipld/dag-ucan/1.7.0-beta:
     resolution: {integrity: sha512-QLGz2IyAiNlT09pwvC2RnZJ2dyUqil5aRN2KLvGpShaTWGlCpCFGJzkn9M1kA04M96S3pJaIV2uxPBSVnjgvcg==}
@@ -665,6 +668,7 @@ packages:
       '@ipld/dag-cbor': 7.0.2
       '@ipld/dag-json': 8.0.10
       multiformats: 9.7.0
+    dev: false
 
   /@istanbuljs/load-nyc-config/1.1.0:
     resolution: {integrity: sha512-VjeHSlIzpv/NyD3N0YuHfXOPDIixcA1q2ZV98wsMqcYlPmv2n3Yb2lYP9XMElnaFVXg5A7YLTeLu6V84uQDjmQ==}
@@ -972,6 +976,7 @@ packages:
 
   /@noble/ed25519/1.6.0:
     resolution: {integrity: sha512-UKju89WV37IUALIMfKhKW3psO8AqmrE/GvH6QbPKjzolQ98zM7WmGUeY+xdIgSf5tqPFf75ZCYMgym6E9Jsw3Q==}
+    dev: false
 
   /@nodelib/fs.scandir/2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -1370,40 +1375,6 @@ packages:
       '@typescript-eslint/types': 5.29.0
       eslint-visitor-keys: 3.3.0
     dev: true
-
-  /@ucanto/authority/0.4.2:
-    resolution: {integrity: sha512-jBguE+6ZMRiRdQk9j0XsvkHNROAUwNMqGKMjuyhO4CxHWycz6TLtCzyqq16uguwU5kG08UlCg7f2lPpqzePAVw==}
-    dependencies:
-      '@ipld/dag-ucan': 1.7.0-beta
-      '@noble/ed25519': 1.6.0
-      '@ucanto/interface': 0.6.0
-      multiformats: 9.7.0
-    dev: true
-
-  /@ucanto/core/0.5.1:
-    resolution: {integrity: sha512-d92wzoj+5t7Pr6eu8FIHu3O6zUMVi2ubVCM9cElRS19yCazyWXuVIQvm5I29qjO696xF7sYvxxO1pNExKQqJqQ==}
-    dependencies:
-      '@ipld/car': 4.1.3
-      '@ipld/dag-cbor': 7.0.2
-      '@ipld/dag-ucan': 1.7.0-beta
-      '@ucanto/interface': 0.6.0
-      multiformats: 9.7.0
-
-  /@ucanto/interface/0.6.0:
-    resolution: {integrity: sha512-IFadfddlJbRUAPVT8nCYuqRAk+vWpBari+cBHCJmZ6ceA7wtT5xqNAjyTAveVRR7p1StgukI2wcq4HeHStNW0A==}
-    dependencies:
-      '@ipld/dag-ucan': 1.7.0-beta
-      multiformats: 9.7.0
-
-  /@ucanto/validator/0.5.1:
-    resolution: {integrity: sha512-6hehUMublh8b2aQPmgLXzNRpCfpN66EB4Q3nlan3gmG7DjQ+BY8W1FPUK0TAjxg6E3LyckWyMJW6TFNVhMChNQ==}
-    dependencies:
-      '@ipld/car': 4.1.3
-      '@ipld/dag-cbor': 7.0.2
-      '@ucanto/core': 0.5.1
-      '@ucanto/interface': 0.6.0
-      multiformats: 9.7.0
-    dev: false
 
   /@ungap/promise-all-settled/1.1.2:
     resolution: {integrity: sha512-sL/cEvJWAnClXw0wHk85/2L0G6Sj8UB0Ctc1TEMbKSsmpRosqhwj9gWgFRZSrBr2f9tiXISwNhCPmlfqUqyb9Q==}
@@ -1937,6 +1908,7 @@ packages:
   /cborg/1.9.4:
     resolution: {integrity: sha512-ltobKo17xKYJolhg8UxQhvzcqXhjtUnovwe9Xx59Izo32gLwozGoJs/efp+8dZ5+zu9pNJYnHtmp6iJnDUapww==}
     hasBin: true
+    dev: false
 
   /chai-subset/1.6.0:
     resolution: {integrity: sha512-K3d+KmqdS5XKW5DWPd5sgNffL3uxdDe+6GdnJh3AYPhwnBGRY5urfvfcbRtWIvvpz+KxkL9FeBB6MZewLUNwug==}
@@ -7181,6 +7153,7 @@ packages:
 
   /varint/6.0.0:
     resolution: {integrity: sha512-cXEIW6cfr15lFv563k4GuVuW/fiwjknytD37jIOLSdSWuOI6WnO/oKwmP2FQTU2l01LP8/M5TSAJpzUaGe3uWg==}
+    dev: false
 
   /wcwidth/1.0.1:
     resolution: {integrity: sha512-XHPEwS0q6TaxcvG85+8EYkbiCux2XtWG2mkc47Ng2A77BQu9+DqIOJldST4HgPkuea7dvKSj5VgX3P1d4rW8Tg==}
