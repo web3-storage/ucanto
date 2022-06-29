@@ -57,9 +57,9 @@ prog
         inject: [path.join(__dirname, 'node-globals.js')],
         plugins: [PluginAlias],
         define: {
-          VERSION: JSON.stringify(version),
-          COMMITHASH: JSON.stringify(git.long(__dirname)),
-          BRANCH: JSON.stringify(git.branch(__dirname)),
+          ACCOUNT_VERSION: JSON.stringify(version),
+          ACCOUNT_COMMITHASH: JSON.stringify(git.long(__dirname)),
+          ACCOUNT_BRANCH: JSON.stringify(git.branch(__dirname)),
           global: 'globalThis',
         },
         minify: opts.env !== 'dev',

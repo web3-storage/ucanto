@@ -1,19 +1,19 @@
 import { SigningAuthority } from '@ucanto/authority'
-import { PRIVATE_KEY, DEBUG, SENTRY_DSN } from '../constants.js'
+import { config } from '../config.js'
 import { Logging } from './logging.js'
 import Toucan from 'toucan-js'
 import pkg from '../../package.json'
 
 const sentryOptions = {
-  dsn: SENTRY_DSN,
+  dsn: config.SENTRY_DSN,
   allowedHeaders: ['user-agent', 'x-client'],
   allowedSearchParams: /(.*)/,
   debug: false,
-  environment: ENV,
+  environment: config.ENV,
   rewriteFrames: {
     root: '/',
   },
-  release: VERSION,
+  release: config.VERSION,
   pkg,
 }
 
@@ -30,10 +30,13 @@ export async function getContext(event, params) {
     ...sentryOptions,
   })
   const log = new Logging(event, {
-    debug: DEBUG === 'true',
-    sentry,
+    debug: config.DEBUG,
+    sentry: ['test', 'dev'].includes(config.ENV) ? undefined : sentry,
+    branch: config.BRANCH,
+    version: config.VERSION,
+    commit: config.COMMITHASH,
   })
 
-  const keypair = SigningAuthority.parse(PRIVATE_KEY)
-  return { params, log, keypair }
+  const keypair = SigningAuthority.parse(config.PRIVATE_KEY)
+  return { params, log, keypair, config }
 }

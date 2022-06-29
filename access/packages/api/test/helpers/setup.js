@@ -1,12 +1,19 @@
-import { Log, LogLevel, Miniflare } from 'miniflare'
-import anyTest from 'ava'
-import { SigningAuthority } from '@ucanto/authority'
 import * as UCAN from '@ipld/dag-ucan'
-import * as HTTP from '@ucanto/transport/http'
+import { SigningAuthority } from '@ucanto/authority'
 import * as Client from '@ucanto/client'
 import * as CAR from '@ucanto/transport/car'
 import * as CBOR from '@ucanto/transport/cbor'
+import * as HTTP from '@ucanto/transport/http'
+import anyTest from 'ava'
+import { Miniflare } from 'miniflare'
+import dotenv from 'dotenv'
+import path from 'path'
+import { fileURLToPath } from 'url'
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
+dotenv.config({
+  path: path.join(__dirname, '..', '..', '..', '..', '.env'),
+})
 /**
  * @typedef {import("ava").TestFn<{mf: mf}>} TestFn
  */
@@ -15,9 +22,11 @@ import * as CBOR from '@ucanto/transport/cbor'
 export const test = /** @type {TestFn} */ (anyTest)
 
 export const bindings = {
-  PRIVATE_KEY:
-    'MgCbk99i7qW552YrG6ioSXEzqGbYTBDpTkLjOoTN0ZK0+N+0Bww4KEBX+SQR2c91VAj/KeXR1pQU36k1yoIBqTsmT+D8=',
-  POSTMARK_TOKEN: 'secret',
+  ENV: 'test',
+  DEBUG: 'false',
+  PRIVATE_KEY: process.env.PRIVATE_KEY || '',
+  POSTMARK_TOKEN: process.env.POSTMARK_TOKEN || '',
+  SENTRY_DSN: process.env.SENTRY_DSN || '',
 }
 
 export const mf = new Miniflare({
@@ -25,7 +34,6 @@ export const mf = new Miniflare({
   wranglerConfigPath: true,
   sourceMap: true,
   bindings,
-  // log: new Log(LogLevel.DEBUG),
 })
 
 export const serviceAuthority = SigningAuthority.parse(bindings.PRIVATE_KEY)

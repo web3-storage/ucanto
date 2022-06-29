@@ -1,16 +1,10 @@
 import type { Logging } from './utils/logging'
 import type { SigningAuthority } from '@ucanto/interface'
+import type { config } from './config'
 
 export {}
 
 declare global {
-  const PRIVATE_KEY: string
-  const POSTMARK_TOKEN: string
-  const ENV: string
-  const DEBUG: string
-  const BRANCH: string
-  const VERSION: string
-  const COMMITHASH: string
   const ACCOUNTS: KVNamespace
 }
 
@@ -18,6 +12,7 @@ export interface RouteContext {
   params: Record<string, string>
   log: Logging
   keypair: SigningAuthority
+  config: typeof config
 }
 
 export type Handler = (

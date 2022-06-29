@@ -18,6 +18,9 @@ export class Logging {
    * @param {object} opts
    * @param {string} [opts.token]
    * @param {boolean} [opts.debug]
+   * @param {string} opts.version
+   * @param {string} opts.commit
+   * @param {string} opts.branch
    * @param {import('toucan-js').default} [opts.sentry]
    */
   constructor(event, opts) {
@@ -54,9 +57,9 @@ export class Logging {
         cf: rCf,
       },
       cloudflare_worker: {
-        version: VERSION,
-        commit: COMMITHASH,
-        branch: BRANCH,
+        version: this.opts.version,
+        commit: this.opts.commit,
+        branch: this.opts.branch,
         worker_id: nanoid(10),
         worker_started: this.startTs,
       },

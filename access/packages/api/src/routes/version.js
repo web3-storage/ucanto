@@ -6,9 +6,9 @@ import { JSONResponse } from '../utils/responses.js'
  */
 export function version(event, ctx) {
   return new JSONResponse({
-    version: VERSION,
-    commit: COMMITHASH,
-    branch: BRANCH,
+    version: ctx.config.VERSION,
+    commit: ctx.config.COMMITHASH,
+    branch: ctx.config.BRANCH,
     did: ctx.keypair.did(),
   })
 }
