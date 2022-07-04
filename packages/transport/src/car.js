@@ -46,7 +46,7 @@ export const decode = async ({ headers, body }) => {
   const contentType = headers['content-type'] || headers['Content-Type']
   if (contentType !== 'application/car') {
     throw TypeError(
-      `Only 'content-type: application/car' is supported, intsead got '${contentType}'`
+      `Only 'content-type: application/car' is supported, instead got '${contentType}'`
     )
   }
 

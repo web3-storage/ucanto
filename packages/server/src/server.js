@@ -31,6 +31,7 @@ class Server {
     service,
     encoder,
     decoder,
+    catch: fail,
     authority = Authority,
     canIssue = (capability, issuer) =>
       capability.with === issuer || issuer === id.did(),
@@ -40,6 +41,7 @@ class Server {
     this.service = service
     this.encoder = encoder
     this.decoder = decoder
+    this.catch = fail || (() => {})
   }
   get id() {
     return this.context.id
@@ -60,14 +62,14 @@ class Server {
  * @template T
  * @template {API.Capability} C
  * @template {API.Tuple<API.ServiceInvocation<C, T>>} I
- * @param {API.ServerView<T>} handler
+ * @param {API.ServerView<T>} server
  * @param {API.HTTPRequest<I>} request
  * @returns {Promise<API.HTTPResponse<API.InferServiceInvocations<I, T>>>}
  */
-export const handle = async (handler, request) => {
-  const invocations = await handler.decoder.decode(request)
-  const result = await execute(invocations, handler)
-  return handler.encoder.encode(result)
+export const handle = async (server, request) => {
+  const invocations = await server.decoder.decode(request)
+  const result = await execute(invocations, server)
+  return server.encoder.encode(result)
 }
 
 /**
@@ -101,7 +103,16 @@ export const execute = async (invocations, server) => {
 export const invoke = async (invocation, server) => {
   // If invocation is not for our server respond with error
   if (invocation.audience.did() !== server.id.did()) {
-    return /** @type {any} */ (new InvalidAudience(server.id, invocation))
+    return /** @type {API.Result<any, API.InvalidAudience>} */ (
+      new InvalidAudience(server.id, invocation)
+    )
+  }
+
+  // Invocation needs to have one single capability
+  if (invocation.capabilities.length !== 1) {
+    return /** @type {API.Result<any, InvocationCapabilityError>} */ (
+      new InvocationCapabilityError(invocation.capabilities)
+    )
   }
 
   const [capability] = invocation.capabilities
@@ -117,13 +128,14 @@ export const invoke = async (invocation, server) => {
     try {
       return await handler[method](invocation, server.context)
     } catch (error) {
-      return /** @type {API.Result<any, API.HandlerExecutionError>} */ (
-        new HandlerExecutionError(
-          /** @type {API.Result<any, API.HandlerNotFound>} */
-          capability,
-          /** @type {Error} */ (error)
-        )
+      const err = new HandlerExecutionError(
+        capability,
+        /** @type {Error} */ (error)
       )
+
+      server.catch(err)
+
+      return /** @type {API.Result<any, API.HandlerExecutionError>} */ (err)
     }
   }
 }
@@ -171,8 +183,11 @@ class HandlerExecutionError extends Error {
     super()
     this.capability = capability
     this.cause = cause
+    /** @type { true } */
     this.error = true
   }
+
+  /** @type {'HandlerExecutionError'} */
   get name() {
     return 'HandlerExecutionError'
   }
@@ -195,6 +210,32 @@ class HandlerExecutionError extends Error {
       },
       message: this.message,
       stack: this.stack,
+    }
+  }
+}
+
+class InvocationCapabilityError extends Error {
+  /**
+   * @param {any} caps
+   */
+  constructor(caps) {
+    super()
+    /** @type {true} */
+    this.error = true
+    this.caps = caps
+  }
+  get name() {
+    return 'InvocationCapabilityError'
+  }
+  get message() {
+    return `Invocation is required to have one single capability.`
+  }
+  toJSON() {
+    return {
+      name: this.name,
+      error: this.error,
+      message: this.message,
+      capabilities: this.caps,
     }
   }
 }

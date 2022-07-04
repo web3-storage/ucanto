@@ -60,7 +60,7 @@ export const decode = async ({ headers, body }) => {
   const contentType = headers['content-type'] || headers['Content-Type']
   if (contentType !== 'application/json') {
     throw TypeError(
-      `Only 'content-type: application/json' is supported, intsead got '${contentType}'`
+      `Only 'content-type: application/json' is supported, instead got '${contentType}'`
     )
   }
   /** @type {API.Block[]} */

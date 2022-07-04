@@ -127,6 +127,7 @@ export interface Delegation<
 
   facts: Fact[]
   proofs: Proof[]
+  iterate(): IterableIterator<Delegation>
 }
 
 export interface Invocation<C extends Capability = Capability>
@@ -359,10 +360,13 @@ export interface Server<T> extends ServerOptions {
    * Actual service providing capability handlers.
    */
   readonly service: T
+
+  readonly catch?: (err: HandlerExecutionError) => void
 }
 
 export interface ServerView<T> extends Server<T>, Transport.Channel<T> {
   context: InvocationContext
+  catch: (err: HandlerExecutionError) => void
 }
 
 export type Service = Record<
