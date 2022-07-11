@@ -5,11 +5,13 @@ on:
   push:
     branches:
       - main
+      - w3
     paths:
       - 'packages/interface/**'
   pull_request:
     branches:
       - main
+      - w3
     paths:
       - 'packages/interface/**'
       - '.github/workflows/interface.yml'

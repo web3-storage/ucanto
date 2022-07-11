@@ -9,7 +9,11 @@
     "packages/server",
     "packages/transport",
     "packages/authority",
-    "packages/validator"
+    "packages/validator",
+    "w3/store",
+    "w3/signer",
+    "w3/sigv4",
+    "w3/cli"
   ],
   "scripts": {
     "format": "prettier --write '**/*.{js,ts,yml,json}' --ignore-path .gitignore",

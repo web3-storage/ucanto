@@ -1,22 +1,17 @@
-name: authority
+name: web3-storage/sigv4
 
 on:
   workflow_dispatch:
   push:
     branches:
-      - main
       - w3
     paths:
-      - 'packages/interface/**'
-      - 'packages/authority/**'
+      - 'w3/sigv4/**'
   pull_request:
     branches:
-      - main
       - w3
     paths:
-      - 'packages/interface/**'
-      - 'packages/authority/**'
-      - '.github/workflows/authority.yml'
+      - 'w3/sigv4/**'
 jobs:
   check:
     name: Typecheck
@@ -26,7 +21,7 @@ jobs:
         node-version:
           - 16
         project:
-          - authority
+          - sigv4
     steps:
       - uses: actions/checkout@v2
 
@@ -45,7 +40,7 @@ jobs:
       - name: Typecheck
         uses: gozala/typescript-error-reporter-action@v1.0.8
         with:
-          project: packages/${{matrix.project}}/tsconfig.json
+          project: w3/${{matrix.project}}/tsconfig.json
   test:
     name: Test
     runs-on: ${{ matrix.os }}
@@ -53,14 +48,11 @@ jobs:
     strategy:
       matrix:
         node-version:
-          - 14
           - 16
         os:
           - ubuntu-latest
-          - windows-latest
-          - macos-latest
         project:
-          - authority
+          - sigv4
 
     steps:
       - uses: actions/checkout@v2
@@ -78,7 +70,7 @@ jobs:
           run_install: true
 
       - name: Test (Node)
-        run: pnpm run --if-present --dir packages/${{matrix.project}} test:node
+        run: pnpm run --if-present --dir w3/${{matrix.project}} test:node
 
       - name: Test (Web)
-        run: pnpm run --if-present --dir packages/${{matrix.project}} test:web
+        run: pnpm run --if-present --dir w3/${{matrix.project}} test:web

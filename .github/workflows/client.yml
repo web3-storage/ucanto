@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - main
+      - w3
     paths:
       - 'packages/interface/**'
       - 'packages/core/**'
@@ -13,6 +14,7 @@ on:
   pull_request:
     branches:
       - main
+      - w3
     paths:
       - 'packages/interface/**'
       - 'packages/core/**'

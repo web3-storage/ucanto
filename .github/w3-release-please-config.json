@@ -1,0 +1,11 @@
+{
+  "plugins": [
+    "node-workspace"
+  ],
+  "bootstrap-sha": "b8f92b0ec196ed8ddce7cd277f8296c0d76c94ae",
+  "packages": {
+    "w3/sigv4": {},
+    "w3/store": {},
+    "w3/cli": {}
+  }
+}
