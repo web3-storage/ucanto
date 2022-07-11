@@ -140,7 +140,7 @@ test('main', async () => {
       })
 
       // add car to S3
-      s3.set(`${car.cid}/data`, true)
+      s3.set(`${car.cid}/${car.cid}.car`, true)
 
       const result = await Store.Add.invoke({
         issuer: alice,

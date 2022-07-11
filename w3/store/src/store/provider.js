@@ -36,7 +36,12 @@ export const create = ({ id, identity, accounting, signingOptions }) => ({
         return account
       }
 
-      const result = await accounting.add(group, link, invocation.cid)
+      const result = await accounting.add(
+        invocation.audience.did(),
+        group,
+        link,
+        invocation.cid
+      )
       if (result.error) {
         return result
       }
@@ -68,12 +73,21 @@ export const create = ({ id, identity, accounting, signingOptions }) => ({
       }
 
       const group = /** @type {API.DID} */ (capability.with)
-      await accounting.remove(group, link, invocation.cid)
+      await accounting.remove(
+        invocation.audience.did(),
+        group,
+        link,
+        invocation.cid
+      )
       return link
     }),
     list: provide(Capability.List, async ({ capability, invocation }) => {
       const group = /** @type {API.DID} */ (capability.with)
-      return await accounting.list(group, invocation.cid)
+      return await accounting.list(
+        invocation.audience.did(),
+        group,
+        invocation.cid
+      )
     }),
   },
   // this is a boilerplate that redelegates all the `identity/*` capabilities
