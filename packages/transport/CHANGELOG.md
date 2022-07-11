@@ -1,5 +1,34 @@
 # Changelog
 
+### [0.6.2](https://www.github.com/web3-storage/ucanto/compare/transport-v0.6.1...transport-v0.6.2) (2022-07-01)
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @ucanto/interface bumped from ^0.6.1 to ^0.6.2
+    * @ucanto/core bumped from ^0.5.2 to ^0.5.3
+  * devDependencies
+    * @ucanto/authority bumped from ^0.4.3 to ^0.4.4
+
+### [0.6.1](https://www.github.com/web3-storage/ucanto/compare/transport-v0.6.0...transport-v0.6.1) (2022-06-30)
+
+
+### Bug Fixes
+
+* build types before publishing ([#71](https://www.github.com/web3-storage/ucanto/issues/71)) ([04b7958](https://www.github.com/web3-storage/ucanto/commit/04b79588f77dba234aaf628f62f574b124bd540b))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @ucanto/interface bumped from ^0.6.0 to ^0.6.1
+    * @ucanto/core bumped from ^0.5.1 to ^0.5.2
+  * devDependencies
+    * @ucanto/authority bumped from ^0.4.2 to ^0.4.3
+
 ## [0.6.0](https://www.github.com/web3-storage/ucanto/compare/transport-v0.5.0...transport-v0.6.0) (2022-06-24)
 
 

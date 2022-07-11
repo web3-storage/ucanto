@@ -1,7 +1,7 @@
 {
   "name": "@ucanto/client",
   "description": "UCAN RPC Client",
-  "version": "0.5.0",
+  "version": "0.5.3",
   "keywords": [
     "UCAN",
     "RPC",
@@ -25,11 +25,12 @@
     "test:node": "c8 --check-coverage --branches 100 --functions 100 --lines 100 mocha test/**/*.spec.js",
     "test": "npm run test:node",
     "coverage": "c8 --reporter=html mocha test/test-*.js && npm_config_yes=true npx st -d coverage -p 8080",
-    "typecheck": "tsc --build"
+    "typecheck": "tsc --build",
+    "build": "tsc --build"
   },
   "dependencies": {
     "multiformats": "^9.6.4",
-    "@ucanto/interface": "^0.6.0"
+    "@ucanto/interface": "^0.6.2"
   },
   "devDependencies": {
     "@types/mocha": "^9.1.0",
@@ -44,9 +45,9 @@
     "c8": "^7.11.0",
     "nyc": "^15.1.0",
     "typescript": "^4.7.2",
-    "@ucanto/authority": "^0.4.2",
-    "@ucanto/transport": "^0.6.0",
-    "@ucanto/core": "^0.5.1"
+    "@ucanto/authority": "^0.4.4",
+    "@ucanto/transport": "^0.6.2",
+    "@ucanto/core": "^0.5.3"
   },
   "type": "module",
   "main": "src/lib.js",
@@ -65,22 +66,6 @@
     ".": {
       "types": "./dist/src/lib.d.ts",
       "import": "./src/lib.js"
-    },
-    "./src/lib.js": {
-      "types": "./dist/src/lib.d.ts",
-      "import": "./src/lib.js"
-    },
-    "./src/client.js": {
-      "types": "./dist/src/client.d.ts",
-      "import": "./src/client.js"
-    },
-    "./src/server.js": {
-      "types": "./dist/src/server.d.ts",
-      "import": "./src/server.js"
-    },
-    "./src/transport.js": {
-      "types": "./dist/src/transport.d.ts",
-      "import": "./src/transport.js"
     }
   },
   "c8": {

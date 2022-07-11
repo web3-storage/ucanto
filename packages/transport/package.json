@@ -1,7 +1,7 @@
 {
   "name": "@ucanto/transport",
   "description": "ucanto transport",
-  "version": "0.6.0",
+  "version": "0.6.2",
   "keywords": [
     "UCAN",
     "RPC",
@@ -25,14 +25,15 @@
     "test:node": "c8 --check-coverage --branches 100 --functions 100 --lines 100 mocha test/**/*.spec.js",
     "test": "npm run test:node",
     "coverage": "c8 --reporter=html mocha test/**/*.spec.js && npm_config_yes=true npx st -d coverage -p 8080",
-    "typecheck": "tsc --build"
+    "typecheck": "tsc --build",
+    "build": "tsc --build"
   },
   "dependencies": {
     "@ipld/car": "^4.1.0",
     "@ipld/dag-cbor": "^7.0.1",
     "multiformats": "^9.6.4",
-    "@ucanto/interface": "^0.6.0",
-    "@ucanto/core": "^0.5.1"
+    "@ucanto/interface": "^0.6.2",
+    "@ucanto/core": "^0.5.3"
   },
   "devDependencies": {
     "@types/mocha": "^9.1.0",
@@ -46,7 +47,7 @@
     "c8": "^7.11.0",
     "nyc": "^15.1.0",
     "typescript": "^4.7.2",
-    "@ucanto/authority": "^0.4.2"
+    "@ucanto/authority": "^0.4.4"
   },
   "type": "module",
   "typesVersions": {

@@ -13,6 +13,7 @@
     "w3/store",
     "w3/signer",
     "w3/sigv4",
+    "w3/streaming-multihash",
     "w3/cli"
   ],
   "scripts": {

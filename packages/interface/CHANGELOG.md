@@ -1,5 +1,19 @@
 # Changelog
 
+### [0.6.2](https://www.github.com/web3-storage/ucanto/compare/interface-v0.6.1...interface-v0.6.2) (2022-07-01)
+
+
+### Bug Fixes
+
+* remove non-existing exports from map ([8f1a75c](https://www.github.com/web3-storage/ucanto/commit/8f1a75cea5a7d63435ec265dbd4bb7ed26c8bb4c))
+
+### [0.6.1](https://www.github.com/web3-storage/ucanto/compare/interface-v0.6.0...interface-v0.6.1) (2022-06-30)
+
+
+### Bug Fixes
+
+* build types before publishing ([#71](https://www.github.com/web3-storage/ucanto/issues/71)) ([04b7958](https://www.github.com/web3-storage/ucanto/commit/04b79588f77dba234aaf628f62f574b124bd540b))
+
 ## [0.6.0](https://www.github.com/web3-storage/ucanto/compare/interface-v0.5.0...interface-v0.6.0) (2022-06-24)
 
 

@@ -48,6 +48,10 @@ jobs:
       - name: Test
         run: pnpm run --if-present test:node
         if: ${{ steps.release-please.outputs.releases_created }}
+        
+      - name: Build
+        run: pnpm run --if-present build
+        if: ${{ steps.release-please.outputs.releases_created }}
 
       - name: Publish
         if: ${{ steps.release-please.outputs.releases_created }}

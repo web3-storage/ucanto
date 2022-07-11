@@ -55,6 +55,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
         run: |
           pnpm publish w3/sigv4 --access=public --publish-branch=w3
+          pnpm publish w3/streaming-multihash --access=public --publish-branch=w3
           pnpm publish w3/store --access=public --publish-branch=w3
           pnpm publish w3/cli --access=public --publish-branch=w3
 

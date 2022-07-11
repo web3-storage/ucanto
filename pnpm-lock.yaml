@@ -18,7 +18,7 @@ importers:
       '@noble/ed25519': ^1.6.0
       '@types/chai': ^4.3.0
       '@types/mocha': ^9.1.0
-      '@ucanto/interface': ^0.6.0
+      '@ucanto/interface': ^0.6.2
       c8: ^7.11.0
       chai: ^4.3.6
       mocha: ^9.2.2
@@ -46,10 +46,10 @@ importers:
       '@types/chai': ^4.3.0
       '@types/chai-subset': ^1.3.3
       '@types/mocha': ^9.1.0
-      '@ucanto/authority': ^0.4.2
-      '@ucanto/core': ^0.5.1
-      '@ucanto/interface': ^0.6.0
-      '@ucanto/transport': ^0.6.0
+      '@ucanto/authority': ^0.4.4
+      '@ucanto/core': ^0.5.3
+      '@ucanto/interface': ^0.6.2
+      '@ucanto/transport': ^0.6.2
       '@web-std/fetch': ^4.1.0
       '@web-std/file': ^3.0.2
       c8: ^7.11.0
@@ -88,8 +88,8 @@ importers:
       '@types/chai': ^4.3.0
       '@types/chai-subset': ^1.3.3
       '@types/mocha': ^9.1.0
-      '@ucanto/authority': ^0.4.2
-      '@ucanto/interface': ^0.6.0
+      '@ucanto/authority': ^0.4.4
+      '@ucanto/interface': ^0.6.2
       c8: ^7.11.0
       chai: ^4.3.6
       chai-subset: ^1.6.0
@@ -133,12 +133,12 @@ importers:
       '@types/chai': ^4.3.0
       '@types/chai-subset': ^1.3.3
       '@types/mocha': ^9.1.0
-      '@ucanto/authority': ^0.4.2
-      '@ucanto/client': ^0.5.0
-      '@ucanto/core': ^0.5.1
-      '@ucanto/interface': ^0.6.0
-      '@ucanto/transport': ^0.6.0
-      '@ucanto/validator': ^0.5.1
+      '@ucanto/authority': ^0.4.4
+      '@ucanto/client': ^0.5.3
+      '@ucanto/core': ^0.5.3
+      '@ucanto/interface': ^0.6.2
+      '@ucanto/transport': ^0.6.2
+      '@ucanto/validator': ^0.5.4
       '@web-std/fetch': ^4.1.0
       '@web-std/file': ^3.0.2
       c8: ^7.11.0
@@ -178,9 +178,9 @@ importers:
       '@types/chai': ^4.3.0
       '@types/chai-subset': ^1.3.3
       '@types/mocha': ^9.1.0
-      '@ucanto/authority': ^0.4.2
-      '@ucanto/core': ^0.5.1
-      '@ucanto/interface': ^0.6.0
+      '@ucanto/authority': ^0.4.4
+      '@ucanto/core': ^0.5.3
+      '@ucanto/interface': ^0.6.2
       '@web-std/fetch': ^4.1.0
       c8: ^7.11.0
       chai: ^4.3.6
@@ -217,10 +217,10 @@ importers:
       '@types/chai': ^4.3.0
       '@types/chai-subset': ^1.3.3
       '@types/mocha': ^9.1.0
-      '@ucanto/authority': ^0.4.2
-      '@ucanto/client': ^0.5.0
-      '@ucanto/core': ^0.5.1
-      '@ucanto/interface': ^0.6.0
+      '@ucanto/authority': ^0.4.4
+      '@ucanto/client': ^0.5.3
+      '@ucanto/core': ^0.5.3
+      '@ucanto/interface': ^0.6.2
       c8: ^7.11.0
       chai: ^4.3.6
       chai-subset: ^1.6.0
@@ -365,6 +365,35 @@ importers:
       chai: 4.3.6
       chai-subset: 1.6.0
       mocha: 9.2.2
+      playwright-test: 7.4.1
+      typescript: 4.7.3
+
+  w3/streaming-multihash:
+    specifiers:
+      '@noble/hashes': ^1.1.2
+      '@types/chai': ^4.3.0
+      '@types/chai-subset': ^1.3.3
+      '@types/mocha': ^9.1.0
+      c8: ^7.11.0
+      chai: ^4.3.6
+      chai-subset: ^1.6.0
+      mocha: ^9.2.2
+      multiformats: ^9.7.0
+      nyc: ^15.1.0
+      playwright-test: ^7.3.0
+      typescript: ^4.7.2
+    dependencies:
+      '@noble/hashes': 1.1.2
+      multiformats: 9.7.0
+    devDependencies:
+      '@types/chai': 4.3.1
+      '@types/chai-subset': 1.3.3
+      '@types/mocha': 9.1.1
+      c8: 7.11.3
+      chai: 4.3.6
+      chai-subset: 1.6.0
+      mocha: 9.2.2
+      nyc: 15.1.0
       playwright-test: 7.4.1
       typescript: 4.7.3
 
@@ -665,6 +694,10 @@ packages:
 
   /@noble/hashes/1.1.1:
     resolution: {integrity: sha512-Lkp9+NijmV7eSVZqiUvt3UCuuHeJpUVmRrvh430gyJjJiuJMqkeHf6/A9lQ/smmbWV/0spDeJscscPzyB4waZg==}
+    dev: false
+
+  /@noble/hashes/1.1.2:
+    resolution: {integrity: sha512-KYRCASVTv6aeUi1tsF8/vpyR7zpfs3FUzy2Jqm+MU+LmUKhQ0y2FpfwqkCcxSg2ua4GALJd8k2R76WxwZGbQpA==}
     dev: false
 
   /@nodelib/fs.scandir/2.1.5:

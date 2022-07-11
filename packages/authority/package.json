@@ -1,7 +1,7 @@
 {
   "name": "@ucanto/authority",
   "description": "ed25519 identity",
-  "version": "0.4.2",
+  "version": "0.4.4",
   "keywords": [
     "UCAN",
     "ed25519",
@@ -23,10 +23,11 @@
     "test:node": "c8 --check-coverage --branches 100 --functions 100 --lines 100 mocha test/**/*.spec.js",
     "test": "npm run test:node",
     "coverage": "c8 --reporter=html mocha test/test-*.js && npm_config_yes=true npx st -d coverage -p 8080",
-    "typecheck": "tsc --build"
+    "typecheck": "tsc --build",
+    "build": "tsc --build"
   },
   "dependencies": {
-    "@ucanto/interface": "^0.6.0",
+    "@ucanto/interface": "^0.6.2",
     "@noble/ed25519": "^1.6.0",
     "@ipld/dag-ucan": "^1.7.0-beta",
     "multiformats": "^9.6.4"
