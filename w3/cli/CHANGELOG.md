@@ -1,5 +1,19 @@
 # Changelog
 
+### [1.1.1](https://www.github.com/web3-storage/ucanto/compare/w3-cli-v1.1.0...w3-cli-v1.1.1) (2022-07-11)
+
+
+### Bug Fixes
+
+* paths resolution on windows ([#64](https://www.github.com/web3-storage/ucanto/issues/64)) ([f34ceb2](https://www.github.com/web3-storage/ucanto/commit/f34ceb2a0bf84375f911567ad5d2293574ec2f7d))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * devDependencies
+    * w3-store bumped from ^1.1.0 to ^1.2.0
+
 ## [1.1.0](https://www.github.com/web3-storage/ucanto/compare/w3-cli-v1.0.0...w3-cli-v1.1.0) (2022-06-24)
 
 

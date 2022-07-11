@@ -1,7 +1,7 @@
 {
   "name": "w3-cli",
   "description": "web3.storage upload service",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "types": "./dist/src/main.d.ts",
   "main": "./src/main.js",
   "bin": {
@@ -51,7 +51,7 @@
     "chai": "^4.3.6",
     "chai-subset": "^1.6.0",
     "playwright-test": "^7.3.0",
-    "w3-store": "^1.1.0"
+    "w3-store": "^1.2.0"
   },
   "exports": {
     ".": {

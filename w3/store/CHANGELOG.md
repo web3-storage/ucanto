@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.2.0](https://www.github.com/web3-storage/ucanto/compare/w3-store-v1.1.0...w3-store-v1.2.0) (2022-07-11)
+
+
+### Features
+
+* Add ability to pass security token to signer for temporary IAMs via STS ([c73a31a](https://www.github.com/web3-storage/ucanto/commit/c73a31ac122af1319183bf3be6447d70e01d6c55))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @web3-storage/sigv4 bumped from ^1.0.0 to ^1.1.0
+
 ## [1.1.0](https://www.github.com/web3-storage/ucanto/compare/w3-store-v1.0.0...w3-store-v1.1.0) (2022-06-24)
 
 

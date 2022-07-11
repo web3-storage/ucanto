@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.1.0](https://www.github.com/web3-storage/ucanto/compare/sigv4-v1.0.0...sigv4-v1.1.0) (2022-07-11)
+
+
+### Features
+
+* Add ability to pass security token to signer for temporary IAMs via STS ([c73a31a](https://www.github.com/web3-storage/ucanto/commit/c73a31ac122af1319183bf3be6447d70e01d6c55))
+
+
+### Bug Fixes
+
+* use chai assert ([#67](https://www.github.com/web3-storage/ucanto/issues/67)) ([890d20d](https://www.github.com/web3-storage/ucanto/commit/890d20db89572eb614d399fcee535ca5641b26a7))
+
 ## 1.0.0 (2022-06-24)
 
 

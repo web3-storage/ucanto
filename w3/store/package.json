@@ -1,7 +1,7 @@
 {
   "name": "w3-store",
   "description": "web3.storage upload service",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "types": "./dist/src/lib.d.ts",
   "main": "./src/lib.js",
   "keywords": [
@@ -28,7 +28,7 @@
     "@ucanto/client": "^0.5.0",
     "@ucanto/interface": "^0.6.0",
     "multiformats": "^9.7.0",
-    "@web3-storage/sigv4": "^1.0.0",
+    "@web3-storage/sigv4": "^1.1.0",
     "@web-std/fetch": "^4.1.0"
   },
   "devDependencies": {
