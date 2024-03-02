@@ -24,6 +24,7 @@
     "test:web": "playwright-test test/*.spec.js --cov && nyc report",
     "test:node": "c8 --check-coverage --branches 100 --functions 100 --lines 100 mocha test/*.spec.js",
     "test": "c8 --check-coverage --branches 100 --functions 100 --lines 100 mocha --bail test/*.spec.js",
+    "test:policy": "c8 --check-coverage --branches 100 --functions 100 --lines 100 entail test/policy/*.spec.js",
     "coverage": "c8 --reporter=html mocha test/*.spec.js && npm_config_yes=true npx st -d coverage -p 8080",
     "check": "tsc --build",
     "build": "tsc --build"
@@ -44,7 +45,8 @@
     "mocha": "^10.1.0",
     "nyc": "^15.1.0",
     "playwright-test": "^8.2.0",
-    "typescript": "^5.0.4"
+    "typescript": "^5.0.4",
+    "entail": "^2.1.2"
   },
   "type": "module",
   "main": "src/lib.js",
