@@ -1,9 +1,9 @@
 {
   "packages/client": "9.0.1",
   "packages/core": "10.0.1",
-  "packages/interface": "10.0.1",
+  "packages/interface": "10.0.2",
   "packages/principal": "9.0.1",
-  "packages/server": "10.0.0",
+  "packages/server": "10.0.1",
   "packages/transport": "9.1.1",
   "packages/validator": "9.0.2"
 }

@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.0.2](https://github.com/web3-storage/ucanto/compare/interface-v10.0.1...interface-v10.0.2) (2024-05-10)
+
+
+### Bug Fixes
+
+* **server:** loosen requirements on statics ([#353](https://github.com/web3-storage/ucanto/issues/353)) ([6de27c0](https://github.com/web3-storage/ucanto/commit/6de27c0f19790d9def1df2f2e299fa4f0996ded9))
+
 ## [10.0.1](https://github.com/web3-storage/ucanto/compare/interface-v10.0.0...interface-v10.0.1) (2024-04-08)
 
 
