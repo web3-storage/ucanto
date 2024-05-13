@@ -502,6 +502,43 @@ export interface InstructionModel<
 }
 
 /**
+ * View over an {@link InstructionModel} DAG, providing some sugar for the API.
+ */
+export interface Instruction<
+  Op extends Ability = Ability,
+  URI extends Resource = Resource,
+  Input extends Record<string, unknown> = Record<string, unknown>
+> extends InstructionModel<Op, URI, Input>,
+    IPLDView<InstructionModel<Op, URI, Input>> {
+  readonly nonce: string
+}
+
+export interface TaskModel<Run extends InstructionModel = InstructionModel> {
+  run: Link<Run>
+  meta: Meta
+  prf: UCANLink[]
+
+  cause?: Link<ReceiptModel>
+}
+
+export interface Task<Run extends InstructionModel = InstructionModel>
+  extends TaskModel<Run> {
+  instruction: Instruction<Run['op'], Run['rsc'], Run['input']> | Link<Run>
+
+  readonly proofs: Proof[]
+}
+
+export interface InvocationModel {
+  task: TaskModel
+  auth: Link<AuthorizationModel>
+}
+
+export interface AuthorizationModel<Alg extends SigAlg = SigAlg> {
+  scope: Link[]
+  s: Signature<this['scope'], Alg>
+}
+
+/**
  * Defines result type as per invocation spec
  *
  * @see https://github.com/ucan-wg/invocation/#6-result
