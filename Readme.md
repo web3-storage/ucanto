@@ -164,7 +164,7 @@ const demo1 = async connection => {
     },
   })
 
-  const result = await connection.execute([me])
+  const result = await connection.execute(me)
   if (result.error) {
     console.error('oops', result)
   } else {
