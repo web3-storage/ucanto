@@ -58,6 +58,26 @@ export const provideAdvanced =
       return { error: new InvalidAudience({ cause: result.error }) }
     }
 
+    // Find valid proof chain by checking configured authroities.
+    for (const authority of options.authorities ?? []) {
+      const authorization = await access(invocation, {
+        ...options,
+        authority,
+        capability
+      })
+      if (authorization.error) {
+        continue
+      } else {
+        return /** @type {API.Result<Exclude<U, {error:true}>, {error:true} & Exclude<U, Exclude<U, {error:true}>>|API.InvocationError>} */ (
+          handler({
+            capability: authorization.capability,
+            invocation,
+            context: options
+          })
+        )
+      }
+    }
+
     const authorization = await access(invocation, {
       ...options,
       authority: options.id,

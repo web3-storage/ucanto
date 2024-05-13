@@ -726,6 +726,9 @@ export type InvocationError =
 export interface InvocationContext extends ValidatorOptions {
   id: Signer
 
+  /** Additional authorities that may verify the invocation. */
+  authorities?: Verifier[]
+
   resolve?: (proof: UCANLink) => Await<Result<Delegation, UnavailableProof>>
 
   principal: PrincipalParser
